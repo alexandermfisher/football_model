@@ -1,0 +1,39 @@
+EPL win candidates:'Arsenal', 'Liverpool', 'Man City'
+EPL lose candidates:'Aston Villa', 'Bournemouth', 'Newcastle', 'Norwich', 'West Ham'
+
+Championship win candidates:'Leeds', 'Stoke'
+Championship lose candidates:'Charlton', 'Hull', 'Luton', 'Sheffield Weds', 'Stoke'
+
+League 1 win candidates:'Oxford', 'Peterboro', 'Portsmouth', 'Wycombe'
+League 1 lose candidates:'AFC Wimbledon', 'Accrington', 'Blackpool', 'Bristol Rvs', 'Rochdale', 'Shrewsbury', 'Southend', 'Sunderland', 'Wycombe'
+
+League 2 win candidates:'Cheltenham', 'Crawley Town', 'Crewe', 'Plymouth', 'Swindon'
+League 2 lose candidates:'Bradford', 'Exeter', 'Macclesfield', 'Newport County', 'Oldham', 'Scunthorpe', 'Stevenage'
+
+Premier League win candidates:'Celtic', 'Livingston'
+Premier League lose candidates:'Hibernian', 'Ross County', 'St Mirren'
+
+Bundesliga 1 win candidates:'Bayern Munich', 'Dortmund', 'FC Koln', 'Leverkusen'
+Bundesliga 1 lose candidates:'Augsburg', 'Ein Frankfurt', 'Fortuna Dusseldorf', 'Schalke 04', 'Union Berlin', 'Werder Bremen'
+
+Bundesliga 2 win candidates:'Bielefeld', 'Stuttgart'
+Bundesliga 2 lose candidates:'Dresden', 'Erzgebirge Aue', 'Regensburg'
+
+Serie A win candidates:'Juventus', 'Lazio'
+Serie A lose candidates:'Brescia', 'Cagliari', 'Lecce', 'Torino'
+
+Serie B win candidates:'Crotone', 'Salernitana', 'Spezia'
+Serie B lose candidates:'Pescara', 'Salernitana', 'Trapani'
+
+La Liga Primera win candidates:'Barcelona', 'Sociedad', 'Valencia'
+La Liga Primera lose candidates:'Eibar', 'Levante', 'Valencia', 'Valladolid'
+
+La Liga Segunda win candidates:'Sp Gijon', 'Tenerife', 'Zaragoza'
+La Liga Segunda lose candidates:'Albacete', 'Fuenlabrada', 'Huesca', 'Las Palmas', 'Lugo', 'Numancia', 'Ponferradina', 'Sp Gijon'
+
+Le Championnat win candidates:'Montpellier', 'Paris SG'
+Le Championnat lose candidates:'Amiens', 'Dijon', 'Montpellier', 'St Etienne', 'Toulouse'
+
+Division 2 win candidates:'Clermont'
+Division 2 lose candidates:'Guingamp', 'Le Mans', 'Niort', 'Orleans'
+

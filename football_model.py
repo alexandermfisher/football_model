@@ -1,11 +1,10 @@
-import pandas as pd
-import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+import csv
+import matplotlib.pyplot as plt
 from itertools import compress
 
-
 ### Functions to compute win/loss ratio, and goal ratio. In addition taking the reusults and finding win and lose candidates
-
 
 def team_query_outcome(dataframe,team):
     h_team_df = dataframe[dataframe['HomeTeam'] == team]
@@ -52,7 +51,6 @@ def lose_candidate(win_ratio,goal_ratio):
     else:
         return int(0)
 
-
 def setdiff_sorted(array1,array2,assume_unique=False):
     ans = np.setdiff1d(array1,array2,assume_unique).tolist()
     if assume_unique:
@@ -66,50 +64,34 @@ def get_team_list(url):
 
     return teams_list
 
-def E0_candidates():
+def league_candidates(league_id):
 
-    df = pd.read_csv('https://www.football-data.co.uk/mmz4281/1920/E0.csv')
+    df = pd.read_csv('https://www.football-data.co.uk/mmz4281/1920/' + league_id + '.csv')
     df = df[['Date','HomeTeam','AwayTeam','FTHG','FTAG']]
-    teams_list = get_team_list('https://www.football-data.co.uk/mmz4281/1920/E0.csv')
-    results = np.zeros([20,2])
-    for i in range(20):
+    teams_list = get_team_list('https://www.football-data.co.uk/mmz4281/1920/' + league_id + '.csv')
+    results = np.zeros([int(len(teams_list)),2])
+    for i in range(int(len(teams_list))):
         results[i,:] = team_query_outcome(df,teams_list[i])
 
-    print(list(compress(teams_list,results[:,0])))
-    print(list(compress(teams_list,results[:,1])))
+    return list(compress(teams_list,results[:,0])), list(compress(teams_list,results[:,1]))
 
-    return 
+def get_weekly_bets():
+    file = open("weekly_bets.txt","w+")
+    for key in leagues_dictionary:
+        win_candidates,lose_candidates = league_candidates(leagues_dictionary[key])  
+        file.write(key+' win candidates:'+str(win_candidates)[1:-1]+ '\n')
+        file.write(key+' lose candidates:'+str(lose_candidates)[1:-1]+ '\n\n')
 
-
-def E1_candidates():
-
-    df = pd.read_csv('https://www.football-data.co.uk/mmz4281/1920/E1.csvz')
-    df = df[['Date','HomeTeam','AwayTeam','FTHG','FTAG']]
-    teams_list = get_team_list('https://www.football-data.co.uk/mmz4281/1920/E1.csv')
-    results = np.zeros([20,2])
-    for i in range(20):
-        results[i,:] = team_query_outcome(df,teams_list[i])
-
-    print(list(compress(teams_list,results[:,0])))
-    print(list(compress(teams_list,results[:,1])))
-
-    return 
+    file.close()
+    return  
 
 
+list_leagues = ['EPL','Championship','League 1','League 2','Premier League','Bundesliga 1','Serie A','Serie B','La Liga Primera',
+                'La Liga Segunda','Le Championnat',' Division 2']
+leagues_dictionary = {'EPL': 'E0', 'Championship': 'E1', 'League 1': 'E2','League 2': 'E3','Premier League': 'SC0','Bundesliga 1': 'D1', 'Bundesliga 2': 'D2', 
+                        'Serie A': 'I1','Serie B': 'I2','La Liga Primera':'SP1','La Liga Segunda':'SP2', 'Le Championnat': 'F1','Division 2':'F2'}
 
-
-
-E0_candidates()
-E1_candidates()
-
-
-
-
-
-
-
-
-
+get_weekly_bets()
 
 
 

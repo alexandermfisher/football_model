@@ -6,6 +6,7 @@ from itertools import compress
 
 ### Functions to compute win/loss ratio, and goal ratio. In addition taking the reusults and finding win and lose candidates
 
+
 def team_query_outcome(dataframe,team):
     h_team_df = dataframe[dataframe['HomeTeam'] == team]
     h_team_df.reset_index(drop=True,inplace=True)
@@ -52,23 +53,58 @@ def lose_candidate(win_ratio,goal_ratio):
         return int(0)
 
 
+def setdiff_sorted(array1,array2,assume_unique=False):
+    ans = np.setdiff1d(array1,array2,assume_unique).tolist()
+    if assume_unique:
+        return sorted(ans)
+    return ans
+
+def get_team_list(url):
+    df = pd.read_csv(url)
+    df = df[['HomeTeam']]
+    teams_list = setdiff_sorted(df.to_numpy(),[None])
+
+    return teams_list
+
+def E0_candidates():
+
+    df = pd.read_csv('https://www.football-data.co.uk/mmz4281/1920/E0.csv')
+    df = df[['Date','HomeTeam','AwayTeam','FTHG','FTAG']]
+    teams_list = get_team_list('https://www.football-data.co.uk/mmz4281/1920/E0.csv')
+    results = np.zeros([20,2])
+    for i in range(20):
+        results[i,:] = team_query_outcome(df,teams_list[i])
+
+    print(list(compress(teams_list,results[:,0])))
+    print(list(compress(teams_list,results[:,1])))
+
+    return 
 
 
-### Exampple on EPL data. Import data and run functions print out results
+def E1_candidates():
 
-epl_df = pd.read_csv('E0.csv')
-epl_df = epl_df[['Date','HomeTeam','AwayTeam','FTHG','FTAG']]
+    df = pd.read_csv('https://www.football-data.co.uk/mmz4281/1920/E1.csvz')
+    df = df[['Date','HomeTeam','AwayTeam','FTHG','FTAG']]
+    teams_list = get_team_list('https://www.football-data.co.uk/mmz4281/1920/E1.csv')
+    results = np.zeros([20,2])
+    for i in range(20):
+        results[i,:] = team_query_outcome(df,teams_list[i])
 
-teams_list = ['Arsenal','Aston Villa','Bournemouth','Brighton','Burnley','Chelsea','Crystal Palace',
-            'Everton','Leicester','Liverpool','Man City','Man United','Newcastle','Norwich','Sheffield United',
-            'Southampton','Tottenham', 'Watford','West Ham','Wolves']
+    print(list(compress(teams_list,results[:,0])))
+    print(list(compress(teams_list,results[:,1])))
 
-results = np.zeros([20,2])
-for i in range(20):
-    results[i,:] = team_query_outcome(epl_df,teams_list[i])
+    return 
 
-print(list(compress(teams_list,results[:,0])))
-print(list(compress(teams_list,results[:,1])))
+
+
+
+
+E0_candidates()
+E1_candidates()
+
+
+
+
 
 
 
